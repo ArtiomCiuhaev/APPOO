@@ -1,0 +1,113 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--/*@thymesVar id="tour" type="com.travel.agency.Entity.Tour"*/-->
+    <title th:title="${'-=Travel agency=-: ' + tour.getTitle()}">Travel agency - TOURS</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<!--/*@thymesVar id="tour" type="com.travel.agency.Entity.Tour"*/-->
+<div th:replace="fragments/header :: header(-1)">Static header</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>Tour detail information</h2>
+        </div>
+    </div>
+
+    <div th:replace="fragments/tourDetail :: tourDetail">Tour detail information</div>
+
+
+    <!--/*@thymesVar id="bookTour" type="boolean"*/-->
+    <div class="row" th:if="${bookTour}">
+        <br><br>
+        <div class="col-12 text-center">
+            <h3>Place an order now</h3>
+        </div>
+        <div class="col-12">
+            <!--/*@thymesVar id="orderDTO" type="com.travel.agency.controller.OrderDTO"*/-->
+            <form th:object="${orderDTO}" method="post" th:action="@{/order}">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="client">Customer</label>
+                            <!--/*@thymesVar id="showError" type="boolean"*/-->
+                            <div th:if="${#fields.hasErrors('client') and showError != null and showError}"
+                                 th:errors="*{client}" style="color: red">
+                                Client error
+                            </div>
+                            <input class="form-control"
+                                   type="text"
+                                   id="client"
+                                   th:field="*{client}"
+                                   placeholder="enter name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="count">Number of tickets</label>
+                            <!--/*@thymesVar id="showError" type="boolean"*/-->
+                            <div th:if="${#fields.hasErrors('count') and showError != null and showError}"
+                                 th:errors="*{count}" style="color: red">
+                                Client error
+                            </div>
+                            <input class="form-control"
+                                   type="text"
+                                   id="count"
+                                   th:field="*{count}"
+                                   placeholder="enter number">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="display: none">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="count">tourId</label>
+                            <input class="form-control"
+                                   type="text"
+                                   id="tourId" th:field="*{tourID}"
+                                   placeholder="id">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary form-control">Book now</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

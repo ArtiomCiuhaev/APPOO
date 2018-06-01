@@ -1,0 +1,90 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--/*@thymesVar id="tour" type="com.travel.agency.Entity.Tour"*/-->
+    <title th:title="${'-=Travel agency=-: ' + tour.getTitle()}">Travel agency - TOURS</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" th:href="@{/css/style.css}">
+</head>
+<body>
+<!--/*@thymesVar id="tour" type="com.travel.agency.Entity.Tour"*/-->
+<div th:replace="fragments/header :: header(-1)">Static header</div>
+
+<div class="container" th:fragment="tourDetail" th:remove="tag">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>
+                <span th:text="${tour.getTitle()}">Tour title (#id)</span>
+
+                <img class="hot_tour_img"
+                     src="../../../img/hot_price.png"
+                     th:src="@{/img/hot_price.png}"
+                     th:if="${tour.isHot()}"
+                     alt="HOT PRICE!"/>
+            </h2>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-12"><h5>Hotel:</h5></div>
+        <div class="col-3">Title:</div>
+        <div class="col-9">
+            <span th:text="${tour.getHotel().getName()}">Hotel title</span>
+            <span th:each="i : ${#numbers.sequence( 1, tour.getHotel().getStar())}">
+                <img src="../../../img/star.png" th:src="@{/img/star.png}" class="star">
+            </span>
+        </div>
+        <div class="col-3">Address:</div>
+        <div class="col-9" th:text="${tour.getHotel().getAddress()}"></div>
+        <div style="display:none">
+            <div class="col-3">Stars:</div>
+            <div class="col-3" th:text="${tour.getHotel().getStar()}"></div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12"><h5>Trip information:</h5></div>
+
+        <div class="col-3">Departure date</div>
+        <div class="col-3 text-left" th:text="${tour.getDateFrom()}">01.05.2018</div>
+
+        <div class="col-3 text-right">Return date</div>
+        <div class="col-3" th:text="${tour.getDateTo()}">01.06.2018</div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">Transport</div>
+        <div class="col-9" th:text="${tour.getTransport().toString()}"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">Price</div>
+        <div class="col-9" th:text="${tour.getPrice() / 100.0}"></div>
+    </div>
+
+</div>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--/*@thymesVar id="tour" type="com.travel.agency.Entity.Tour"*/-->
+    <title th:title="${'-=Travel agency=-: available tours'}">Travel agency - Available tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:replace="fragments/header :: header(3)">Static header</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2>Pick a tour</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <!--/*@thymesVar id="params" type="com.travel.agency.Entity.SearchTourParametersDTO"*/-->
+            <form th:object="${params}" th:action="@{/search}" method="post">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="title">Tour title</label>
+                            <input class="form-control"
+                                   id="title" name="title"
+                                   th:field="*{title}"
+                                   placeholder="part of tour title">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="address">Hotel address</label>
+                            <input class="form-control"
+                                   id="address" name="address"
+                                   th:field="*{address}"
+                                   placeholder="part of address">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        Stars in hotel
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <input class="form-control"
+                                   id="starLow" name="starLow"
+                                   th:field="*{starLow}"
+                                   placeholder="from">
+                        </div>
+                    </div>
+                    <div class="col-1 text-center">...</div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <input class="form-control"
+                                   id="starUp" name="starUp"
+                                   th:field="*{starUp}"
+                                   placeholder="to">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="transport">Transport</label>
+                            <input class="form-control"
+                                   id="transport" name="transport"
+                                   th:field="*{transport}"
+                                   placeholder="part of name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        Start tour
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group form-inline">
+                            <label class="col-2 col-form-label">from</label>
+                            <input type="date" class="form-control col-10"
+                                   id="dateLow" name="dateLow"
+                                   th:field="*{dateLow}"
+                                   min="2018-01-01" max="2019-12-31">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group form-inline">
+                            <label class="col-2 col-form-label">to</label>
+                            <input type="date" class="form-control col-10"
+                                   id="dateUp" name="dateUp"
+                                   th:field="*{dateUp}"
+                                   min="2017-01-01" max="2030-12-31">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="onlyHot" th:field="*{onlyHot}">
+                            <label class="form-check-label" for="onlyHot">Only HOT tours</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary form-control">Search..</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

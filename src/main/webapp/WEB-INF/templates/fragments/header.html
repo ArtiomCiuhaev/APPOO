@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--/*@thymesVar id="tour" type="com.travel.agency.Entity.Tour"*/-->
+    <title th:title="${'-=Travel agency=-: available tours'}">Travel Agency - Available tours</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:fragment="header(itemId)" th:remove="tag">
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+        <a class="navbar-brand " href="#" th:href="@{/}">Travel Agency</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" th:classappend="${itemId == 1}? active">
+                    <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item" th:classappend="${itemId == 2}? active">
+                    <a class="nav-link" href="#" th:href="@{/tours}">Tour list</a>
+                </li>
+                <li class="nav-item" th:classappend="${itemId == 3}? active">
+                    <a class="nav-link" href="#" th:href="@{/search}">Search tour</a>
+                </li>
+
+                <li class="nav-item" th:classappend="${itemId == 4}? active">
+                    <a class="nav-link" href="#" th:href="@{/orders}">Orders</a>
+                </li>
+            </ul>
+            <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="#" th:href="@{/logout}"><button class="btn btn-dark navbar-btn">Logout</button>
+            </a>
+        </div>
+    </nav>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

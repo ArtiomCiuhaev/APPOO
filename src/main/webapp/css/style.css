@@ -1,0 +1,22 @@
+
+
+.star {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    mix-blend-mode: multiply;
+}
+
+.hot_tour_img {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    mix-blend-mode: multiply;
+}
+
+.hot_tour_img_small {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    mix-blend-mode: multiply;
+}
